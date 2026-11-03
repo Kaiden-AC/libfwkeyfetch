@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A164C512F51D15100954BE1 /* libjssy.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A164C502F51D15100954BE1 /* libjssy.0.dylib */; };
+		2A164C522F51D15100954BE1 /* libjssy.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 2A164C502F51D15100954BE1 /* libjssy.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		879FE9C82DDE00F200654386 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 879FE9C62DDE00F200654386 /* main.cpp */; };
 		879FE9CF2DDE013E00654386 /* libfwkeyfetch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 879FE9CE2DDE013E00654386 /* libfwkeyfetch.cpp */; };
-		879FE9D22DDE018F00654386 /* jssy.c in Sources */ = {isa = PBXBuildFile; fileRef = 879FE9D12DDE018F00654386 /* jssy.c */; };
 		879FE9D72DDE031400654386 /* libgeneral.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 879FE9D62DDE031400654386 /* libgeneral.0.dylib */; };
 		879FE9D82DDE031400654386 /* libgeneral.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 879FE9D62DDE031400654386 /* libgeneral.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		879FE9DB2DDE031D00654386 /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 879FE9DA2DDE031800654386 /* libcurl.tbd */; };
@@ -33,6 +34,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2A164C522F51D15100954BE1 /* libjssy.0.dylib in Embed Libraries */,
 				879FE9DE2DDE032700654386 /* libfragmentzip.0.dylib in Embed Libraries */,
 				879FE9D82DDE031400654386 /* libgeneral.0.dylib in Embed Libraries */,
 			);
@@ -42,12 +44,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2A164C502F51D15100954BE1 /* libjssy.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libjssy.0.dylib; path = ../../../../usr/local/lib/libjssy.0.dylib; sourceTree = "<group>"; };
 		879FE9BC2DDE009600654386 /* libfwkeyfetch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libfwkeyfetch; sourceTree = BUILT_PRODUCTS_DIR; };
 		879FE9C62DDE00F200654386 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		879FE9CD2DDE013E00654386 /* libfwkeyfetch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = libfwkeyfetch.hpp; path = ../include/libfwkeyfetch/libfwkeyfetch.hpp; sourceTree = "<group>"; };
 		879FE9CE2DDE013E00654386 /* libfwkeyfetch.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = libfwkeyfetch.cpp; sourceTree = "<group>"; };
-		879FE9D02DDE018F00654386 /* jssy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = jssy.h; path = external/jssy/jssy/jssy.h; sourceTree = SOURCE_ROOT; };
-		879FE9D12DDE018F00654386 /* jssy.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jssy.c; path = external/jssy/jssy/jssy.c; sourceTree = SOURCE_ROOT; };
 		879FE9D62DDE031400654386 /* libgeneral.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libgeneral.0.dylib; path = ../../../../usr/local/lib/libgeneral.0.dylib; sourceTree = "<group>"; };
 		879FE9DA2DDE031800654386 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		879FE9DC2DDE032700654386 /* libfragmentzip.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfragmentzip.0.dylib; path = ../../../../usr/local/lib/libfragmentzip.0.dylib; sourceTree = "<group>"; };
@@ -61,6 +62,7 @@
 				879FE9DD2DDE032700654386 /* libfragmentzip.0.dylib in Frameworks */,
 				879FE9DB2DDE031D00654386 /* libcurl.tbd in Frameworks */,
 				879FE9D72DDE031400654386 /* libgeneral.0.dylib in Frameworks */,
+				2A164C512F51D15100954BE1 /* libjssy.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,7 +89,6 @@
 		879FE9C72DDE00F200654386 /* libfwkeyfetch */ = {
 			isa = PBXGroup;
 			children = (
-				879FE9D42DDE019B00654386 /* external */,
 				879FE9CD2DDE013E00654386 /* libfwkeyfetch.hpp */,
 				879FE9CE2DDE013E00654386 /* libfwkeyfetch.cpp */,
 				879FE9C62DDE00F200654386 /* main.cpp */,
@@ -95,26 +96,10 @@
 			path = libfwkeyfetch;
 			sourceTree = "<group>";
 		};
-		879FE9D32DDE019300654386 /* jssy */ = {
-			isa = PBXGroup;
-			children = (
-				879FE9D02DDE018F00654386 /* jssy.h */,
-				879FE9D12DDE018F00654386 /* jssy.c */,
-			);
-			name = jssy;
-			sourceTree = "<group>";
-		};
-		879FE9D42DDE019B00654386 /* external */ = {
-			isa = PBXGroup;
-			children = (
-				879FE9D32DDE019300654386 /* jssy */,
-			);
-			name = external;
-			sourceTree = "<group>";
-		};
 		879FE9D52DDE031400654386 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2A164C502F51D15100954BE1 /* libjssy.0.dylib */,
 				879FE9DC2DDE032700654386 /* libfragmentzip.0.dylib */,
 				879FE9DA2DDE031800654386 /* libcurl.tbd */,
 				879FE9D62DDE031400654386 /* libgeneral.0.dylib */,
@@ -184,7 +169,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				879FE9C82DDE00F200654386 /* main.cpp in Sources */,
-				879FE9D22DDE018F00654386 /* jssy.c in Sources */,
 				879FE9CF2DDE013E00654386 /* libfwkeyfetch.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

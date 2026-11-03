@@ -1,13 +1,10 @@
-AM_CFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/external/jssy/jssy/ $(libcurl_CFLAGS) $(libfragmentzip_CFLAGS) $(libgeneral_CFLAGS)
-AM_LDFLAGS = -L$(top_srcdir)/libfwkeyfetch $(libcurl_LIBS) $(libfragmentzip_LIBS) $(libgeneral_LIBS)
-
-noinst_LTLIBRARIES = libjssy.la
+AM_CFLAGS = -I$(top_srcdir)/include $(GLOBAL_CFLAGS) \
+              $(libcurl_CFLAGS) $(libfragmentzip_CFLAGS) $(libgeneral_CFLAGS) $(libjssy_CFLAGS) $(openssl_CFLAGS)
+AM_LDFLAGS = -L$(top_srcdir)/libfwkeyfetch $(GLOBAL_LDFLAGS) \
+              $(libcurl_LIBS) $(libfragmentzip_LIBS) $(libgeneral_LIBS) $(libjssy_LIBS) $(openssl_LIBS)
 
 lib_LTLIBRARIES = libfwkeyfetch.la
 
-libjssy_la_CFLAGS = $(AM_CFLAGS)
-libjssy_la_SOURCES = $(top_srcdir)/external/jssy/jssy/jssy.c
-
 libfwkeyfetch_la_CXXFLAGS = $(AM_CFLAGS)
-libfwkeyfetch_la_LIBADD = libjssy.la $(AM_LDFLAGS)
+libfwkeyfetch_la_LIBADD = $(AM_LDFLAGS)
 libfwkeyfetch_la_SOURCES = libfwkeyfetch.cpp

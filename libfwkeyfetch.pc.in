@@ -5,7 +5,7 @@ includedir=@includedir@
 
 Name: libfwkeyfetch
 Description: A small library to request iOS firmware keys
-Requires: @libcurl_requires@ @libfragmentzip_requires@ @libgeneral_requires@
+Requires: @libcurl_requires@ @libfragmentzip_requires@ @libgeneral_requires@ @libjssy_requires@
 Version: @VERSION_COMMIT_COUNT@
 Libs: -L${libdir} -lfwkeyfetch
 Cflags: -I${includedir}

@@ -41,14 +41,17 @@ CFLAGS+=" -std=c11 -fvisibility=hidden"
 LIBCURL_REQUIRES_STR="libcurl >= 8.5.0"
 LIBFRAGMENTZIP_REQUIRES_STR="libfragmentzip >= 70"
 LIBGENERAL_REQUIRES_STR="libgeneral >= 83"
+LIBJSSY_REQUIRES_STR="libjssy >= 33"
 
 PKG_CHECK_MODULES(libcurl, $LIBCURL_REQUIRES_STR)
 PKG_CHECK_MODULES(libfragmentzip, $LIBFRAGMENTZIP_REQUIRES_STR, have_libfragmentzip=yes, have_libfragmentzip=no)
 PKG_CHECK_MODULES(libgeneral, $LIBGENERAL_REQUIRES_STR)
+PKG_CHECK_MODULES(libjssy, $LIBJSSY_REQUIRES_STR)
 
 AC_SUBST([libcurl_requires], [$LIBCURL_REQUIRES_STR])
 AC_SUBST([libfragmentzip_requires], [$LIBFRAGMENTZIP_REQUIRES_STR])
 AC_SUBST([libgeneral_requires], [$LIBGENERAL_REQUIRES_STR])
+AC_SUBST([libjssy_requires], [$LIBJSSY_REQUIRES_STR])
 
 AC_ARG_WITH([libfragmentzip],
             [AS_HELP_STRING([--without-libfragmentzip],

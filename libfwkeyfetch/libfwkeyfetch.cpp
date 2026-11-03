@@ -18,15 +18,13 @@
 
 #include "../include/libfwkeyfetch/libfwkeyfetch.hpp"
 
+#include <jssy/jssy.h>
+
 #include <curl/curl.h>
 
 #ifdef HAVE_LIBFRAGMENTZIP
 #include <libfragmentzip/libfragmentzip.h>
 #endif //HAVE_LIBFRAGMENTZIP
-
-extern "C" {
-#include "jssy.h"
-}
 
 #ifdef WITH_REMOTE_KEYS
 #define FIRMWARE_JSON_URL_START "https://raw.githubusercontent.com/tihmstar/fwkeydb/master/keys/firmware/"
