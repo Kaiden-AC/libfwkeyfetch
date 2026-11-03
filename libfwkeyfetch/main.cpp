@@ -6,9 +6,11 @@
 //
 
 #include <libgeneral/macros.h>
+#include "libfwkeyfetch/libfwkeyfetch.hpp"
 
 int main(int argc, const char * argv[]) {
     info("start");
+    
     info("done");
     return 0;
 }

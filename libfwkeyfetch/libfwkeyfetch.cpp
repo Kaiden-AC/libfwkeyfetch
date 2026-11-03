@@ -262,8 +262,8 @@ static std::string getLatestfwkeydbRelease(){
     static std::string ret;
     if (!ret.size()){
 #ifndef FWKEYDB_LATEST_RELESES
-    reterror("Compiled without getLatestfwkeydbRelease support");
-#endif
+        reterror("Compiled without getLatestfwkeydbRelease support");
+#else
         jssytok_t* tokens = NULL;
         cleanup([&]{
             safeFree(tokens);
@@ -280,6 +280,7 @@ static std::string getLatestfwkeydbRelease(){
         assure(tagname);
         assure(tagname->type == JSSY_STRING && tagname->size > 0);
         ret = {tagname->value, tagname->value+tagname->size};
+#endif
     }
         
     return ret;
@@ -290,6 +291,9 @@ LIBFWKEYFETCH_API fw_key libfwkeyfetch::getFirmwareKeyForKBAG(std::string kbag){
 #ifndef HAVE_LIBFRAGMENTZIP
     reterror("compiled without libfragmentzip");
 #else
+#   ifndef WITH_REMOTE_KEYS
+    reterror("compiled without remote keys");
+#   else
     int err = 0;
     fragmentzip_t *fz = NULL;
     char *outBuf = NULL;
@@ -336,6 +340,7 @@ LIBFWKEYFETCH_API fw_key libfwkeyfetch::getFirmwareKeyForKBAG(std::string kbag){
         
         return rt;
     }
+#   endif
 #endif
 }
 
