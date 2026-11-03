@@ -73,6 +73,10 @@ AC_ARG_ENABLE([debug],
 
 AM_CONDITIONAL(WITH_REMOTE_KEYS, test "x$with_remote_keys" = "xyes")
 
+if test "x$win32" = "xtrue"; then
+  PKG_CHECK_MODULES(openssl, "openssl")
+fi
+
 if test "x$with_remote_keys" = "xyes"; then
   AC_DEFINE(WITH_REMOTE_KEYS, 1, [Define if you build with support for requesting keys from remote public database])
 fi
