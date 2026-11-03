@@ -22,6 +22,8 @@
 
 #include <curl/curl.h>
 
+#include <algorithm>
+
 #ifdef HAVE_LIBFRAGMENTZIP
 #include <libfragmentzip/libfragmentzip.h>
 #endif //HAVE_LIBFRAGMENTZIP
@@ -307,6 +309,8 @@ LIBFWKEYFETCH_API fw_key libfwkeyfetch::getFirmwareKeyForKBAG(std::string kbag){
     long tokensCnt = 0;
     jssytok_t *tgt = NULL;
     char kbagmapurl[sizeof(FWKEYDB_KBAGMAP_TEMPLATE_STR) + 20] = {};
+    
+    std::transform(kbag.begin(), kbag.end(), kbag.begin(), [](unsigned char c){return tolower(c);});
     
     auto lastFWKeyDBRelease = getLatestfwkeydbRelease();
     
