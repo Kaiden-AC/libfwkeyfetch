@@ -39,9 +39,9 @@ CFLAGS+=" -std=c11 -fvisibility=hidden"
 
 # Checks for libraries.
 LIBCURL_REQUIRES_STR="libcurl >= 8.5.0"
-LIBFRAGMENTZIP_REQUIRES_STR="libfragmentzip >= 70"
-LIBGENERAL_REQUIRES_STR="libgeneral >= 83"
-LIBJSSY_REQUIRES_STR="libjssy >= 33"
+LIBFRAGMENTZIP_REQUIRES_STR="libfragmentzip >= 77"
+LIBGENERAL_REQUIRES_STR="libgeneral >= 92"
+LIBJSSY_REQUIRES_STR="libjssy >= 37"
 
 PKG_CHECK_MODULES(libcurl, $LIBCURL_REQUIRES_STR)
 PKG_CHECK_MODULES(libfragmentzip, $LIBFRAGMENTZIP_REQUIRES_STR, have_libfragmentzip=yes, have_libfragmentzip=no)
