@@ -38,20 +38,25 @@ CXXFLAGS+=" -std=c++11"
 CFLAGS+=" -std=c11 -fvisibility=hidden"
 
 # Checks for libraries.
+# libgeneral + libfragmentzip + libjssy are vendored as git submodules under
+# external/ and built statically as libgeneral.a / libfragmentzip.a /
+# libjssy.a, so no system pkg-config install is required for them.
+# (https://github.com/tihmstar/libgeneral,
+#  https://github.com/tihmstar/libfragmentzip,
+#  https://github.com/tihmstar/jssy.git)
+# Standardized libs (libcurl, zlib) remain via pkg-config.
 LIBCURL_REQUIRES_STR="libcurl >= 8.5.0"
-LIBFRAGMENTZIP_REQUIRES_STR="libfragmentzip >= 77"
-LIBGENERAL_REQUIRES_STR="libgeneral >= 92"
-LIBJSSY_REQUIRES_STR="libjssy >= 41"
+LIBZ_REQUIRES_STR="zlib >= 1.0"
 
 PKG_CHECK_MODULES(libcurl, $LIBCURL_REQUIRES_STR)
-PKG_CHECK_MODULES(libfragmentzip, $LIBFRAGMENTZIP_REQUIRES_STR, have_libfragmentzip=yes, have_libfragmentzip=no)
-PKG_CHECK_MODULES(libgeneral, $LIBGENERAL_REQUIRES_STR)
-PKG_CHECK_MODULES(libjssy, $LIBJSSY_REQUIRES_STR)
+PKG_CHECK_MODULES(zlib, $LIBZ_REQUIRES_STR)
 
 AC_SUBST([libcurl_requires], [$LIBCURL_REQUIRES_STR])
-AC_SUBST([libfragmentzip_requires], [$LIBFRAGMENTZIP_REQUIRES_STR])
-AC_SUBST([libgeneral_requires], [$LIBGENERAL_REQUIRES_STR])
-AC_SUBST([libjssy_requires], [$LIBJSSY_REQUIRES_STR])
+# libfragmentzip requires string kept for backwards compat of generated
+# variables, but is no longer a system dep (vendored).
+AC_SUBST([libfragmentzip_requires], ["libfragmentzip >= 77"])
+AC_SUBST([libgeneral_requires], ["libgeneral >= 92"])
+AC_SUBST([libjssy_requires], ["libjssy >= 41"])
 
 AC_ARG_WITH([libfragmentzip],
             [AS_HELP_STRING([--without-libfragmentzip],
@@ -82,14 +87,8 @@ if test "x$with_remote_keys" = "xyes"; then
 fi
 
 if test "x$with_libfragmentzip" == "xyes"; then
-  if test "x$have_libfragmentzip" != "xyes"; then
-    AC_MSG_ERROR([requested building with libfragmentzip, but library could not be found])
-  fi
-
+  # libfragmentzip is now vendored (external/), so no system check needed.
   AC_DEFINE(HAVE_LIBFRAGMENTZIP, 1, [Define if you have libfragmentzip])
-
-  AC_SUBST(libfragmentzip_CFLAGS)
-  AC_SUBST(libfragmentzip_LIBS)
 else
   echo "*** Note: libfragmentzip has been disabled ***"
 fi
@@ -107,9 +106,13 @@ fi
 
 # Checks for library functions.
 
+# libgeneral/macros.h is generated from macros.h.in (vendored submodule).
+AC_SUBST([LIBGENERAL_CLEANUP_IS_DISABLED], [0])
+
 AC_CONFIG_FILES([Makefile
                  include/Makefile
                  libfwkeyfetch/Makefile
+                 external/libgeneral/include/libgeneral/macros.h
 		             libfwkeyfetch.pc])
 AC_OUTPUT
 
