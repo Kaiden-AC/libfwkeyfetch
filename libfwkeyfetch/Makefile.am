@@ -4,16 +4,18 @@ AM_LDFLAGS = $(libcurl_LIBS) $(zlib_LIBS) $(openssl_LIBS)
 
 noinst_LIBRARIES = libjssy.a libgeneral.a libfragmentzip.a
 
-libjssy_a_CFLAGS = $(AM_CFLAGS)
+# -fPIC is required so these archives can be linked into shared
+# libfwkeyfetch.so when building with shared libs enabled (default).
+libjssy_a_CFLAGS = $(AM_CFLAGS) -fPIC
 libjssy_a_SOURCES = $(top_srcdir)/external/jssy/jssy/jssy.c
 
 # Vendored libgeneral (minimal: exception.cpp only, matching upstream
 # --without-extras / BUILD_MINIMAL; libfwkeyfetch only uses macros.h).
-libgeneral_a_CXXFLAGS = $(AM_CFLAGS)
+libgeneral_a_CXXFLAGS = $(AM_CFLAGS) -fPIC
 libgeneral_a_SOURCES = $(top_srcdir)/external/libgeneral/libgeneral/exception.cpp
 
 # Vendored libfragmentzip (single C source, statically linked).
-libfragmentzip_a_CFLAGS = $(AM_CFLAGS)
+libfragmentzip_a_CFLAGS = $(AM_CFLAGS) -fPIC
 libfragmentzip_a_SOURCES = $(top_srcdir)/external/libfragmentzip/libfragmentzip/libfragmentzip.c
 
 lib_LTLIBRARIES = libfwkeyfetch.la
